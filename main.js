@@ -1,4 +1,4 @@
-const row_render = require("./utils/row_render")
+const table_render = require("./utils/table_render")
 
 const todos = []
 
@@ -20,11 +20,19 @@ todo_table.onsubmit = event => {
         'completed': false,
         'completed_str': 'False',
     })
-    row_render(todos, todo_table, render)
+    table_render(todos, todo_table, render, onclick)
 }
 
 function render() {
-    row_render(todos, todo_table, render)
+    table_render(todos, todo_table, render, onclick)
 }
 
-row_render(todos, todo_table, render)
+function onclick(index, render) {
+    return () => {
+        todos[index].completed = !todos[index].completed
+        todos[index].completed_str = (todos[index].completed) ? 'True' : 'False'
+        table_render(todos, todo_table, render, onclick)
+    }
+}
+
+table_render(todos, todo_table, render, onclick)
