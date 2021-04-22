@@ -1526,6 +1526,17 @@ module.exports = [
 
 },{}],13:[function(require,module,exports){
 const yo = require('yo-yo')
+const func = (todo, index) => {
+    return yo`<div><div>
+    <tr>
+    <th>${todo.text}</th>
+    <th>${todo.priority}</th>
+    <th>${todo.date_added}</th>
+    <th>${todo.completed_str}</th>
+    <th><button onclick=${onclick(index, render)}>Complete</button></th>
+</tr>
+</div>`
+}
 module.exports = function (todos, onclick, render) {
     return yo`<div>
     <tr>
@@ -1535,17 +1546,23 @@ module.exports = function (todos, onclick, render) {
         <th>Complete</th>
         <th></th>
     </tr>
-    ${todos.map(function (todo, index) {
-        return yo`<tr>
-        <th>${todo.text}</th>
-        <th>${todo.priority}</th>
-        <th>${todo.date_added}</th>
-        <th>${todo.completed_str}</th>
-        <th><button onclick=${onclick(index, render)}>Complete</button></th>
-    </tr>
-</div>`
-    })}`
+    </div>
+    ${todos.map((todo, index) => func(todo, index))}</div>`
 }
+
+
+// ${todos.map(function (todo, index) {
+//     return yo`<div>
+//     <tr>
+//     <th>${todo.text}</th>
+//     <th>${todo.priority}</th>
+//     <th>${todo.date_added}</th>
+//     <th>${todo.completed_str}</th>
+//     <th><button onclick=${onclick(index, render)}>Complete</button></th>
+// </tr>
+// </div>`
+// }
+// })}
 },{"yo-yo":11}],14:[function(require,module,exports){
 const yo = require('yo-yo')
 const row_render = require('./row_render')
