@@ -1,6 +1,7 @@
 const yo = require('yo-yo')
 module.exports = function (todos, onclick, render) {
-    return yo`<tr>
+    return yo`<div>
+    <tr>
         <th>To-Do Item</th>
         <th>Priority</th>
         <th>Date Added</th>
@@ -13,7 +14,8 @@ module.exports = function (todos, onclick, render) {
         <th>${todo.priority}</th>
         <th>${todo.date_added}</th>
         <th>${todo.completed_str}</th>
-        <th>${onclick(index, render)}</th>
-    </tr>`
+        <th><button onclick=${onclick(index, render)}>Complete</button></th>
+    </tr>
+</div>`
     })}`
 }

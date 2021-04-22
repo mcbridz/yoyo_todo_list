@@ -1,4 +1,5 @@
 const table_render = require("./utils/table_render")
+const yo = require('yo-yo')
 
 const todos = []
 
@@ -20,12 +21,13 @@ input_form.onsubmit = event => {
         'completed': false,
         'completed_str': 'False',
     })
-    new_table = table_render(todos, todo_table, render, onclick)
-    yo.update(todo_table, new_table)
+    render()
 }
 
 function render() {
+    console.log('RENDER' + todos)
     new_table = table_render(todos, todo_table, render, onclick)
+    console.log(new_table)
     yo.update(todo_table, new_table)
 }
 
@@ -33,7 +35,8 @@ function onclick(index, render) {
     return () => {
         todos[index].completed = !todos[index].completed
         todos[index].completed_str = (todos[index].completed) ? 'True' : 'False'
-        table_render(todos, todo_table, render, onclick)
+        console.log(todos[index])
+        render()
     }
 }
 
