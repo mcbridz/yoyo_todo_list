@@ -1526,8 +1526,8 @@ module.exports = [
 
 },{}],13:[function(require,module,exports){
 const yo = require('yo-yo')
-const func = (todo, index) => {
-    return yo`<div><div>
+const func = (todo, index, onclick, render) => {
+    return yo`<div>
     <tr>
     <th>${todo.text}</th>
     <th>${todo.priority}</th>
@@ -1539,15 +1539,17 @@ const func = (todo, index) => {
 }
 module.exports = function (todos, onclick, render) {
     return yo`<div>
-    <tr>
-        <th>To-Do Item</th>
-        <th>Priority</th>
-        <th>Date Added</th>
-        <th>Complete</th>
-        <th></th>
-    </tr>
+    <div>
+        <tr>
+            <th>To-Do Item</th>
+            <th>Priority</th>
+            <th>Date Added</th>
+            <th>Complete</th>
+            <th></th>
+        </tr>
     </div>
-    ${todos.map((todo, index) => func(todo, index))}</div>`
+    ${todos.map((todo, index) => func(todo, index, onclick, render))}
+    </div>`
 }
 
 
