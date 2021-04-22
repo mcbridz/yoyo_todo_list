@@ -7,7 +7,7 @@ const todo_table = document.querySelector('#todo_table')
 const todo_text = document.querySelector('#todo_text')
 const todo_priority = document.querySelector('#todo_priority')
 
-todo_table.onsubmit = event => {
+input_form.onsubmit = event => {
     event.preventDefault()
     const new_todo = todo_text.value
     const new_priority = todo_priority.value
@@ -20,11 +20,13 @@ todo_table.onsubmit = event => {
         'completed': false,
         'completed_str': 'False',
     })
-    table_render(todos, todo_table, render, onclick)
+    new_table = table_render(todos, todo_table, render, onclick)
+    yo.update(todo_table, new_table)
 }
 
 function render() {
-    table_render(todos, todo_table, render, onclick)
+    new_table = table_render(todos, todo_table, render, onclick)
+    yo.update(todo_table, new_table)
 }
 
 function onclick(index, render) {
@@ -35,4 +37,4 @@ function onclick(index, render) {
     }
 }
 
-table_render(todos, todo_table, render, onclick)
+todo_table.appendChild(table_render(todos, todo_table, render, onclick))

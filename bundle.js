@@ -10,7 +10,7 @@ const todo_table = document.querySelector('#todo_table')
 const todo_text = document.querySelector('#todo_text')
 const todo_priority = document.querySelector('#todo_priority')
 
-todo_table.onsubmit = event => {
+input_form.onsubmit = event => {
     event.preventDefault()
     const new_todo = todo_text.value
     const new_priority = todo_priority.value
@@ -23,11 +23,13 @@ todo_table.onsubmit = event => {
         'completed': false,
         'completed_str': 'False',
     })
-    table_render(todos, todo_table, render, onclick)
+    new_table = table_render(todos, todo_table, render, onclick)
+    yo.update(todo_table, new_table)
 }
 
 function render() {
-    table_render(todos, todo_table, render, onclick)
+    new_table = table_render(todos, todo_table, render, onclick)
+    yo.update(todo_table, new_table)
 }
 
 function onclick(index, render) {
@@ -38,7 +40,7 @@ function onclick(index, render) {
     }
 }
 
-table_render(todos, todo_table, render, onclick)
+todo_table.appendChild(table_render(todos, todo_table, render, onclick))
 },{"./utils/table_render":14}],3:[function(require,module,exports){
 var document = require('global/document')
 var hyperx = require('hyperx')
@@ -1520,22 +1522,30 @@ module.exports = [
 ]
 
 },{}],13:[function(require,module,exports){
+const yo = require('yo-yo')
 module.exports = function (todos, onclick, render) {
     return yo`<tr>
+        <th>To-Do Item</th>
+        <th>Priority</th>
+        <th>Date Added</th>
+        <th>Complete</th>
+        <th></th>
+    </tr>
     ${todos.map(function (todo, index) {
-        return yo`<th>${todo.text}</th>
+        return yo`<tr>
+        <th>${todo.text}</th>
         <th>${todo.priority}</th>
         <th>${todo.date_added}</th>
         <th>${todo.completed_str}</th>
-        <th>${onclick(index)}</th>`
-    })}
+        <th>${onclick(index, render)}</th>
     </tr>`
+    })}`
 }
-},{}],14:[function(require,module,exports){
+},{"yo-yo":11}],14:[function(require,module,exports){
 const yo = require('yo-yo')
 const row_render = require('./row_render')
 module.exports = function (todos, todo_table, render, onclick) {
     let new_table = row_render(todos, onclick, render)
-    yo.update(todo_table, new_table)
+    return new_table
 }
 },{"./row_render":13,"yo-yo":11}]},{},[2]);
