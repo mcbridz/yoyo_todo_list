@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List</title>
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <hr>
+    <form id="input_form">
+        <input type="text" placeholder="Enter To-Do Item Here" id="text_input">
+        <select name="priority" id="input_priority">
+            <option value="low" selected>Low</option>
+            <option value="standard">Standard</option>
+            <option value="high">High</option>
+        </select>
+        <button type="submit">Add</button>
+    </form>
+    <hr>
+    <h3>To do's....</h3>
+    <ul id="todos"></ul>
+    <script src="bundle.js"></script>
+</body>
+
+</html>

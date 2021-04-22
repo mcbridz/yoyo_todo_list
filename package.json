@@ -1,0 +1,23 @@
+{
+  "name": "yoyo_todo_list",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcbridz/yoyo_todo_list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcbridz/yoyo_todo_list/issues"
+  },
+  "homepage": "https://github.com/mcbridz/yoyo_todo_list#readme",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "yo-yo": "^1.4.1"
+  }
+}
