@@ -12,8 +12,8 @@
     <h1>To-Do List</h1>
     <hr>
     <form id="input_form">
-        <input type="text" placeholder="Enter To-Do Item Here" id="text_input">
-        <select name="priority" id="input_priority">
+        <input type="text" placeholder="Enter To-Do Item Here" id="todo_text">
+        <select name="priority" id="todo_priority">
             <option value="low" selected>Low</option>
             <option value="standard">Standard</option>
             <option value="high">High</option>
@@ -22,7 +22,14 @@
     </form>
     <hr>
     <h3>To do's....</h3>
-    <ul id="todos"></ul>
+    <table id="todo_table">
+        <tr>
+            <th>To-Do Item</th>
+            <th>Priority</th>
+            <th>Date Added</th>
+            <th>Complete</th>
+        </tr>
+    </table>
     <script src="bundle.js"></script>
 </body>
 
