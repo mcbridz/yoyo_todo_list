@@ -25,17 +25,17 @@ input_form.onsubmit = event => {
 }
 
 function render() {
-    console.log('RENDER' + todos)
+    console.log('From render function in main.js' + todos)
     new_table = table_render(todos, todo_table, render, onclick)
     console.log(new_table)
     yo.update(todo_table, new_table)
 }
 
 function onclick(index, render) {
-    return () => {
+    return function () {
         todos[index].completed = !todos[index].completed
         todos[index].completed_str = (todos[index].completed) ? 'True' : 'False'
-        console.log(todos[index])
+        console.log('From onclick: ' + todos[index])
         render()
     }
 }

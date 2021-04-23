@@ -1,6 +1,6 @@
 const yo = require('yo-yo')
 const func = (todo, index, onclick, render) => {
-    return yo`<div>
+    let output = yo`<div>
     <tr>
     <th>${todo.text}</th>
     <th>${todo.priority}</th>
@@ -9,9 +9,11 @@ const func = (todo, index, onclick, render) => {
     <th><button onclick=${onclick(index, render)}>Complete</button></th>
 </tr>
 </div>`
+    console.log('From sub-function in row_render.js: ' + output)
+    return output
 }
 module.exports = function (todos, onclick, render) {
-    return yo`<div>
+    let output = yo`<div>
     <div>
         <tr>
             <th>To-Do Item</th>
@@ -23,18 +25,6 @@ module.exports = function (todos, onclick, render) {
     </div>
     ${todos.map((todo, index) => func(todo, index, onclick, render))}
     </div>`
+    console.log('From row_render.js :' + output)
+    return output
 }
-
-
-// ${todos.map(function (todo, index) {
-//     return yo`<div>
-//     <tr>
-//     <th>${todo.text}</th>
-//     <th>${todo.priority}</th>
-//     <th>${todo.date_added}</th>
-//     <th>${todo.completed_str}</th>
-//     <th><button onclick=${onclick(index, render)}>Complete</button></th>
-// </tr>
-// </div>`
-// }
-// })}

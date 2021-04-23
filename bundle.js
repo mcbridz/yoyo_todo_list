@@ -28,17 +28,17 @@ input_form.onsubmit = event => {
 }
 
 function render() {
-    console.log('RENDER' + todos)
+    console.log('From render function in main.js' + todos)
     new_table = table_render(todos, todo_table, render, onclick)
     console.log(new_table)
     yo.update(todo_table, new_table)
 }
 
 function onclick(index, render) {
-    return () => {
+    return function () {
         todos[index].completed = !todos[index].completed
         todos[index].completed_str = (todos[index].completed) ? 'True' : 'False'
-        console.log(todos[index])
+        console.log('From onclick: ' + todos[index])
         render()
     }
 }
@@ -1527,7 +1527,7 @@ module.exports = [
 },{}],13:[function(require,module,exports){
 const yo = require('yo-yo')
 const func = (todo, index, onclick, render) => {
-    return yo`<div>
+    let output = yo`<div>
     <tr>
     <th>${todo.text}</th>
     <th>${todo.priority}</th>
@@ -1536,9 +1536,11 @@ const func = (todo, index, onclick, render) => {
     <th><button onclick=${onclick(index, render)}>Complete</button></th>
 </tr>
 </div>`
+    console.log('From sub-function in row_render.js: ' + output)
+    return output
 }
 module.exports = function (todos, onclick, render) {
-    return yo`<div>
+    let output = yo`<div>
     <div>
         <tr>
             <th>To-Do Item</th>
@@ -1550,26 +1552,16 @@ module.exports = function (todos, onclick, render) {
     </div>
     ${todos.map((todo, index) => func(todo, index, onclick, render))}
     </div>`
+    console.log('From row_render.js :' + output)
+    return output
 }
 
-
-// ${todos.map(function (todo, index) {
-//     return yo`<div>
-//     <tr>
-//     <th>${todo.text}</th>
-//     <th>${todo.priority}</th>
-//     <th>${todo.date_added}</th>
-//     <th>${todo.completed_str}</th>
-//     <th><button onclick=${onclick(index, render)}>Complete</button></th>
-// </tr>
-// </div>`
-// }
-// })}
 },{"yo-yo":11}],14:[function(require,module,exports){
 const yo = require('yo-yo')
 const row_render = require('./row_render')
 module.exports = function (todos, todo_table, render, onclick) {
     let new_table = row_render(todos, onclick, render)
+    console.log('From table_render.js :' + new_table)
     return new_table
 }
 },{"./row_render":13,"yo-yo":11}]},{},[2]);
